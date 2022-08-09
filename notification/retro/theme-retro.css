@@ -1,0 +1,100 @@
+@font-face {
+  font-family: "kingthings";
+  src: url('https://assets.trakteer.id/fonts/kingthings_clarity1.1-webfont.eot');
+  src: url('https://assets.trakteer.id/fonts/kingthings_clarity1.1-webfont.eot') format("embedded-opentype"), 
+      url('https://assets.trakteer.id/fonts/kingthings_clarity1.1-webfont.svg') format("svg"), 
+      url('https://assets.trakteer.id/fonts/kingthings_clarity1.1-webfont.woff2') format("woff2"), 
+      url('https://assets.trakteer.id/fonts/kingthings_clarity1.1-webfont.woff') format("woff"), 
+      url('https://assets.trakteer.id/fonts/kingthings_clarity1.1-webfont.ttf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.theme-retro.container {
+  margin-top: 20px;
+  display: none;                                                                                          
+  transition: opacity 0.5s;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.theme-retro .stream-content {
+  font-family: var(--retroFontFamily);
+  position: relative;
+
+  animation: fadeIn 0.25s linear;
+  animation-iteration-count: 1;
+
+  margin-top: -10px;
+  padding: 25px 10px;
+  background: var(--retroStreamContentBg);
+  color: var(--retroStreamContentColor);
+  box-shadow: 8px 8px 0px var(--retroStreamContentBoxBorder);
+  min-width: 400px;
+  max-width: 500px;
+  text-align: center;
+  font-size: 1.25em;
+  border: 2px solid var(--retroStreamContentBoxBorder);
+  border-radius: 3px;
+}
+
+.theme-retro .stream-media {
+  display: none;
+  font-family: var(--retroFontFamily);
+  position: relative;
+
+  animation: fadeIn 0.25s linear;
+  animation-iteration-count: 1;
+
+  padding: 10px 10px 15px 10px;
+  background: var(--retroStreamContentBg);
+  color: var(--retroStreamContentColor);
+  box-shadow: 8px 8px 0px var(--retroStreamContentBoxBorder);
+  min-width: 400px;
+  max-width: 500px;
+  text-align: center;
+  font-size: 1.25em;
+  border: 2px solid var(--retroStreamContentBoxBorder);
+  border-radius: 3px;
+}
+
+.theme-retro .supporter-name, 
+.theme-retro .quantity, 
+.theme-retro .unit-name {
+  color: var(--retroSupportColor);
+}
+.theme-retro .unit-name {
+  word-break: break-word;
+}
+
+.theme-retro .action {
+  color: var(--retroActionColor);
+}
+
+.theme-retro .support-message {
+  margin-top: 7px;
+  font-size: .8em;
+  word-break: break-word;
+}
+
+.theme-retro .animation iframe {
+  width: 290px;
+}
+.theme-retro .player iframe {
+  width: 300px;
+  height: 176px;
+}
+
+/* Variant */
+.theme-retro.is-media .stream-media {
+  display: flex;
+  justify-content: center;
+}
+
+/* Helper */
+.theme-retro .mr-5 {
+  margin-right: 7px;
+}
+
+/* Animation */
+@keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
