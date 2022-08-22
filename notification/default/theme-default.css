@@ -17,19 +17,19 @@
 }
 .theme-default .stream-content {
   display: none;
-  width: 300px;
+  width: 100%;
   margin-top: 20px;
+  padding: 0 25px;
   text-align: center;
   -webkit-animation: tilt .5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   animation: tilt .5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  box-sizing: border-box;
 }
-.theme-default .stream-media {
+.theme-default .media {
   display: none;
-  width: 300px;
+  width: 400px;
   margin-top: 20px;
   text-align: center;
-  -webkit-animation: tilt .5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-  animation: tilt .5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 .theme-default .stream-content .unit-icon {
   display: block;
@@ -40,14 +40,18 @@
   display: flex;
   justify-content: center;
   padding-bottom: 10px;
+  position: relative;
 }
 .theme-default .stream-content .basic .unit-icon {
-  max-height: 120px;
+  max-height: 150px;
   -webkit-animation: tada 1.5s infinite both;
   animation: tada 1.5s infinite both;
 }
 .theme-default .stream-content .basic .quantity-label {
-  display: block;
+  /* display: block; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   content: 'x5';
   position: absolute;
   top: 0;
@@ -57,21 +61,25 @@
   color: var(--defaultColorStreamContent);
   border: 4px solid;
   border-radius: 999px;
-  font-size: 1.5em;
+  font-size: 24px;
   font-family: var(--defaultFontFamily); 
   font-weight: 800;
-  padding: 11px 16px;
   -webkit-animation: float 6s ease-in-out infinite;
   animation: float 6s ease-in-out infinite;
+  /* padding: 11px 16px; */
+  width: 70px;
+  height: 70px;
+  /* padding-top: 15px; */
+  box-sizing: border-box;
 }
 
 .theme-default .message {
   position: relative;
   font-family: var(--defaultFontFamily);
   font-weight: 800;
-  font-size: 1em;
+  font-size: 18px;
 
-  text-shadow: 4px 3px 0px var(--defaultMessageTextShadow), 9px 8px 0px rgba(0,0,0,0.15);
+  /* text-shadow: 4px 3px 0px var(--defaultMessageTextShadow), 9px 8px 0px rgba(0,0,0,0.15); */
   color: black;
   border: 3px solid var(--defaultMessageBorder) !important;
   color: var(--defaultMessageColor);
@@ -82,15 +90,24 @@
 }
 .theme-default .message .text-wrapper {
   position: relative;
-  display: inline-block;
-  padding-top: 0.2em;
+  /* display: inline-block; */
   padding-right: 0.05em;
   padding-bottom: 0.1em;
   overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .theme-default .message .letter {
   display: inline-block;
   line-height: 1em;
+}
+
+.theme-default .action {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .theme-default .letters-1, 
@@ -99,27 +116,41 @@
 }
 .theme-default .letters-2 { 
   color: var(--defaultPrimaryColor);
+  /* margin-top: 5px; */
 }
 
 .theme-default .support-message {
   margin-top: 20px;
   font-family: var(--defaultFontFamily);
-  font-size: .9em;
+  font-size: 16px;
   color: #fff;
-  text-shadow: 0px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  /* text-shadow: 0px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; */
+  text-shadow: 0px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   word-break: break-word;
+  background: var(--defaultSupportMessageBackground);
+  color: var(--defaultSupportMessageColor);
+  padding: 10px;
+  border-radius: 5px;
 }
 
-.theme-default .animation iframe {
-  width: 290px;
+.theme-default .player,
+.theme-default .animation {
+  width: 400px;
+  height: 225px;
 }
+.theme-default .animation iframe,
 .theme-default .player iframe {
-  width: 300px;
-  height: 176px;
+  border-radius: 3px;
+  width: 100%;
+  height: 100%;
+}
+.theme-default .player:empty,
+.theme-default .animation:empty {
+  display: none;
 }
 
 /* Variant */
-.theme-default.is-media .stream-media {
+.theme-default.is-media .media {
   display: flex;
   justify-content: center;
 }
@@ -129,7 +160,6 @@
 
 /* Helper */
 .theme-default .text-primary { color: var(--defaultPrimaryColor); }
-.theme-default .ml-5 { margin-left: 5px;  }
 .theme-default .mr-7 { margin-right: 7px; }
 
 /* Animation */

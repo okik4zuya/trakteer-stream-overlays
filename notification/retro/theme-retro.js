@@ -25,15 +25,15 @@ class TrThemeRetro {
   html() {
     return `
       <div class="theme-retro container">
-        <div class="stream-media">
-          <div class="animation"></div>
-          <div class="player"></div>
-        </div>  
         <div class="stream-content">
-          <div>
-            <span class="supporter-name mr-5"></span> 
-            <span class="action mr-5">mentraktir</span>
-            <span class="quantity mr-5"></span>
+          <div class="media">
+            <div class="animation"></div>
+            <div class="player"></div>
+          </div>
+          <div class="heading">
+            <span class="supporter-name"></span> 
+            <span class="action">mentraktir</span>
+            <span class="quantity"></span>
             <span class="unit-name"></span>
           </div>
           <div class="support-message"></div>
@@ -44,8 +44,8 @@ class TrThemeRetro {
   setup() {
 
   }
-  setData(data) {
-    h.setHTML('.theme-retro .supporter-name', h.txtOverflow(data.supporter_name, 25));
+  setData(data, setting = null) {
+    h.setHTML('.theme-retro .supporter-name', h.txtOverflow(data.supporter_name, 32));
     h.setHTML('.theme-retro .quantity', (data.quantity).toString());
     h.setHTML('.theme-retro .unit-name', data.unit);
     h.setHTML('.theme-retro .support-message', data.supporter_message || '');
@@ -62,12 +62,17 @@ class TrThemeRetro {
       'video': h.el('.theme-retro .player')
     };
   }
+  async beforeScaleOnPreview() {
+    h.setStyle('.theme-retro.container', { display: 'flex' });
+  }
   async show() {
     h.setStyle('.theme-retro.container', { display: 'flex', opacity: 1 });
   }
-  async hide() {
+  async hide(withFadeOut = true) {
     h.setStyle('.theme-retro.container', { opacity: 0 });
-    await h.timeout(500); // Fade Out Transition Duration
+    if (withFadeOut) {
+      await h.timeout(500);
+    }
     h.setStyle('.theme-retro.container', { display: 'none' });
   }
 }

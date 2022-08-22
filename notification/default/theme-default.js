@@ -1,4 +1,8 @@
 class TrThemeDefault {
+  animate1 = null
+  animate2 = null
+  animate3 = null
+
   name() {
     return 'default'
   }
@@ -22,6 +26,8 @@ class TrThemeDefault {
       {key: `nt_1_clr3`, var: '--defaultMessageColor', default: '#000'},
       {key: `nt_1_clr2`, var: '--defaultMessageBackground', default: '#fff'},
       {key: `nt_1_clr1`, var: '--defaultPrimaryColor', default: '#be1e2d'},
+      {key: `nt_1_clr4`, var: '--defaultSupportMessageBackground', default: '#ff000000'},
+      {key: `nt_1_clr5`, var: '--defaultSupportMessageColor', default: '#fff'},
     ]
   }
   html() {
@@ -32,7 +38,7 @@ class TrThemeDefault {
             <img class="unit-icon" src="">
             <div class="quantity-label"></div>
           </div>
-          <div class="stream-media">
+          <div class="media">
             <div class="animation"></div>
             <div class="player"></div>
           </div>
@@ -40,8 +46,8 @@ class TrThemeDefault {
             <span class="text-wrapper">
               <div class="letters-1">
                 <span class="supporter-name"></span> 
-                <span class="action">mentraktir</span>
               </div>
+              <div class="action">mentrakteer</div>
               <div class="letters-2">
                 <span class="quantity"></span>
                 <span class="unit-name"></span>
@@ -53,12 +59,53 @@ class TrThemeDefault {
       </div>
     `
   }
-  // Set AnimeJS
-  animate1 = null
-  animate2 = null
-  animate3 = null
-
   setup() {
+    
+  }
+  setData(data, setting = null) {
+    // Reset DOM
+    h.setHTML('.theme-default .letters-1', '<span class="supporter-name"></span>');
+    h.setHTML('.theme-default .letters-2', '<span class="quantity"></span><span class="unit-name"></span>');
+
+    // Set Data
+    h.setHTML('.theme-default .supporter-name', h.txtOverflow(data.supporter_name, 32));
+    h.setHTML('.theme-default .quantity', (data.quantity).toString());
+    h.setHTML('.theme-default .quantity-label', 'x' + (data.quantity).toString());
+    h.setHTML('.theme-default .unit-name', data.unit);
+    h.setHTML('.theme-default .support-message', data.supporter_message || '');
+    h.el('.theme-default .unit-icon').src = h.url('alias/' + h.args('hash') + '/unit');
+
+    // For animating letters in Anime.js
+    let letters1 = h.el('.theme-default .supporter-name').textContent.replace(/\S/g, "<span class='letter text-primary'>$&</span>");
+    // letters1 += "<span class='ml-5'></span>";
+    // letters1 += h.el('.theme-default .action').textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+    h.setHTML('.theme-default .message .letters-1', letters1);
+
+    let letters2 = h.el('.theme-default .quantity').textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+    letters2 += "<span class='mr-7'></span>";
+    letters2 += h.el('.theme-default .unit-name').textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+    h.setHTML('.theme-default .message .letters-2', letters2);
+  }
+  addMediaStyle() {
+    h.el('.theme-default').classList.add('is-media');
+  }
+  removeMediaStyle() {
+    h.el('.theme-default').classList.remove('is-media');
+  }
+  mediaElements() {
+    return {
+      'gif': h.el('.theme-default .animation'),
+      'video': h.el('.theme-default .player')
+    };
+  }
+  async beforeScaleOnPreview() {
+    h.setStyle('.theme-default .stream-content', { display : 'block' });
+    await h.timeout(200);
+  }
+  async show() {
+    h.setStyle('.theme-default.container', { opacity : 1 });
+    h.setStyle('.theme-default .stream-content', { display : 'block' });
+
     this.animate1 = anime({
       targets: '.theme-default .letters-1 > * ',
       translateY: ["1.2em", 0],
@@ -84,46 +131,6 @@ class TrThemeDefault {
       loop: true,
       delay: (el, i) => 50 * i
     });
-  }
-  setData(data) {
-    // Reset DOM
-    h.setHTML('.theme-default .letters-1', '<span class="supporter-name"></span><span class="action">mentraktir</span>');
-    h.setHTML('.theme-default .letters-2', '<span class="quantity"></span><span class="unit-name"></span>');
-
-    // Set Data
-    h.setHTML('.theme-default .supporter-name', h.txtOverflow(data.supporter_name, 17));
-    h.setHTML('.theme-default .quantity', (data.quantity).toString());
-    h.setHTML('.theme-default .quantity-label', 'x' + (data.quantity).toString());
-    h.setHTML('.theme-default .unit-name', data.unit);
-    h.setHTML('.theme-default .support-message', data.supporter_message || '');
-    h.el('.theme-default .unit-icon').src = h.url('alias/' + h.args('hash') + '/unit');
-
-    // For animating letters in Anime.js
-    let letters1 = h.el('.theme-default .supporter-name').textContent.replace(/\S/g, "<span class='letter text-primary'>$&</span>");
-    letters1 += "<span class='ml-5'></span>";
-    letters1 += h.el('.theme-default .action').textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-    h.setHTML('.theme-default .message .letters-1', letters1);
-
-    let letters2 = h.el('.theme-default .quantity').textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-    letters2 += "<span class='mr-7'></span>";
-    letters2 += h.el('.theme-default .unit-name').textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-    h.setHTML('.theme-default .message .letters-2', letters2);
-  }
-  addMediaStyle() {
-    h.el('.theme-default').classList.add('is-media');
-  }
-  removeMediaStyle() {
-    h.el('.theme-default').classList.remove('is-media');
-  }
-  mediaElements() {
-    return {
-      'gif': h.el('.theme-default .animation'),
-      'video': h.el('.theme-default .player')
-    };
-  }
-  async show() {
-    h.setStyle('.theme-default.container', { opacity : 1 });
-    h.setStyle('.theme-default .stream-content', { display : 'block' });
 
     this.animate1.reset();
     this.animate1.play();
@@ -131,22 +138,29 @@ class TrThemeDefault {
     this.animate2.play();
     this.animate3.play();
   }
-  async hide() {
+  async hide(withFadeOut = true) {
     const animate3 = this.animate3;
-    const fadeOutDuration = 1000;
-    return new Promise(function (resolve, reject) {
-      anime({
-        targets: '.theme-default.container',
-        opacity: 0,
-        duration: fadeOutDuration,
-        easing: "easeOutExpo",
-        complete: function () {
-          h.setStyle('.theme-default .stream-content', { display : 'none' });
-          animate3.pause();
-          resolve();
-        }
+    if (withFadeOut) {
+      const fadeOutDuration = 1000;
+      return new Promise(function (resolve, reject) {
+        anime({
+          targets: '.theme-default.container',
+          opacity: 0,
+          duration: fadeOutDuration,
+          easing: "easeOutExpo",
+          complete: function () {
+            h.setStyle('.theme-default .stream-content', { display : 'none' });
+            animate3.pause();
+            resolve();
+          }
+        });
       });
-    });
+    }
+    else {
+      h.setStyle('.theme-default.container', { opacity : 0 });
+      h.setStyle('.theme-default .stream-content', { display : 'none' });
+      animate3.pause();
+    }
   }
 }
 

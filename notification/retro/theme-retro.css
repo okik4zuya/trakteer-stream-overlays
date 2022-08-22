@@ -26,36 +26,29 @@
   animation-iteration-count: 1;
 
   margin-top: -10px;
-  padding: 25px 10px;
+  padding: 20px 5px 20px 5px;
   background: var(--retroStreamContentBg);
   color: var(--retroStreamContentColor);
   box-shadow: 8px 8px 0px var(--retroStreamContentBoxBorder);
-  min-width: 400px;
-  max-width: 500px;
+  min-width: 100%;
+  max-width: 100%;
   text-align: center;
-  font-size: 1.25em;
+  font-size: 20px;
   border: 2px solid var(--retroStreamContentBoxBorder);
   border-radius: 3px;
+  box-sizing: border-box;
 }
 
-.theme-retro .stream-media {
+.theme-retro .media {
   display: none;
-  font-family: var(--retroFontFamily);
-  position: relative;
+  margin-bottom: 25px;
+  width: 100%;
+}
 
-  animation: fadeIn 0.25s linear;
-  animation-iteration-count: 1;
-
-  padding: 10px 10px 15px 10px;
-  background: var(--retroStreamContentBg);
-  color: var(--retroStreamContentColor);
-  box-shadow: 8px 8px 0px var(--retroStreamContentBoxBorder);
-  min-width: 400px;
-  max-width: 500px;
-  text-align: center;
-  font-size: 1.25em;
-  border: 2px solid var(--retroStreamContentBoxBorder);
-  border-radius: 3px;
+.theme-retro .supporter-name, 
+.theme-retro .quantity, 
+.theme-retro .action {
+  margin-right: 3px;
 }
 
 .theme-retro .supporter-name, 
@@ -71,29 +64,40 @@
   color: var(--retroActionColor);
 }
 
+.theme-retro .heading,
 .theme-retro .support-message {
-  margin-top: 7px;
-  font-size: .8em;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.theme-retro .support-message {
+  margin-top: 15px;
+  font-size: 16px;
   word-break: break-word;
 }
-
-.theme-retro .animation iframe {
-  width: 290px;
+.theme-retro .support-message:empty {
+  display: none;
 }
+
+.theme-retro .player,
+.theme-retro .animation {
+  width: 410px;
+  height: 230px;
+}
+.theme-retro .animation iframe,
 .theme-retro .player iframe {
-  width: 300px;
-  height: 176px;
+  border-radius: 3px;
+  width: 100%;
+  height: 100%;
+}
+.theme-retro .player:empty,
+.theme-retro .animation:empty {
+  display: none;
 }
 
 /* Variant */
-.theme-retro.is-media .stream-media {
+.theme-retro.is-media .media {
   display: flex;
   justify-content: center;
-}
-
-/* Helper */
-.theme-retro .mr-5 {
-  margin-right: 7px;
 }
 
 /* Animation */
