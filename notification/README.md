@@ -34,3 +34,26 @@ add(dataVideo(5))
 show(data(5))
 hide(data(5))
 ```
+
+## Available Data
+
+Example: 
+
+```
+const data = {
+  'supporter_name': '[ Stream Test ]',
+  'unit': 'Cendol', 
+  'quantity': 1,
+  'supporter_message': 'Selalu Berkarya!',
+  'supporter_avatar': 'https://trakteer.id/images/v2/stats-1.png',
+  'unit_icon': 'https://cdn.trakteer.id/images/mix/mie-ayam.png',
+  'price': 'Rp 5.000',
+  'media': {
+    'gif': 'XTJzFN8rUtx7i,
+    'video': {
+      'id': 'LGv2WkUX-nc', 
+      'start': 52
+    }
+  }
+}
+```
