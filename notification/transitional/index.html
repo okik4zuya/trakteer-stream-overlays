@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Trakteer | Notification Stream Overlay</title>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.reduce,Array.from,Promise,Symbol,Object.setPrototypeOf,Object.getOwnPropertySymbols,Set,Math.trunc"></script>
+    <script src="https://cdn.jsdelivr.net/npm/superagent"></script>
+
+    <script src="https://assets.trakteer.id/js/webfont.js"></script>
+
+    <script src="https://assets.trakteer.id/js/trakteer-stream-settings.js?v=1"></script>
+    <script src="https://assets.trakteer.id/js/trakteer-stream-helper.js?v=1"></script>
+    <link rel="stylesheet" href="https://assets.trakteer.id/js/stream-overlay/notification/index.css?v=1">
+  </head>
+  <body>
+    <script src="https://assets.trakteer.id/js/echo.js"></script>
+    <script>
+      window['dev'] = {
+        settings: [{
+          nt_theme: "transitional",
+          nt_profile: "New Transitional Theme",
+          nt_profile_unit: "1",
+          nt_5_clr1: "red",
+          nt_5_clr2: "#ffffff",
+          nt_5_clr3: "#444444",
+          nt_5_clr4: "yellow",
+          nt_font: "Righteous",
+          nt_animation: "true",
+          nt_media_share: "true",
+          nt_tts: "true",
+          // nt_audio: "/storage/audio/setting-uploads/7ozb8r4zkw469anp/1659417446_viUK2Wqr.mp3"
+          // nt_mute: "false"
+          // nt_delay: "5"
+          // nt_media_share_duration: "1"
+          // nt_media_share_max_duration: "10"
+          // nt_tts_ignore_symbol: "false"
+          // nt_tts_max_duration: "0"
+          // nt_tts_voice_name: "male"
+          // nt_tts_voice_rate: "1"
+        }]
+      }
+    </script>
+    <script src="https://assets.trakteer.id/js/stream-overlay/notification/index.js?v=1"></script>
+    <script>
+      var i = 0
+      var txt = 'Terima kasih creator udah selalu berkarya! Ditunggu karya lainnya ya! Thank youuuu x--xx--';
+
+      function typeWriter() {
+        if (i < txt.length) {
+          document.getElementById("demo").innerHTML += txt.charAt(i);
+          i++;
+          setTimeout(typeWriter, 50);
+        }
+      }
+
+      window.onload = function() {
+        setTimeout(typeWriter, 1000)
+      };
+</script>
+  </body>
+
+
+</html>
